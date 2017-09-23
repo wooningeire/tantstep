@@ -137,7 +137,7 @@
         bufferContexts[3].globalCompositeOperation = "source-over";
         for (var i = 0; i < (192 / 48 + 2) / scale ; i++) {
             for (var j = 0; j < 192 / 45 / scale + 1; j++) {
-                bx3.drawImage(
+                bufferContexts[3].drawImage(
                     sprite.c,
                     (-25 + j * 45 + (i % 2 ? i % 2 * 22 : 0) + s.ox) * scale,
                     (-29 + i * 48 + s.oy) * scale,
@@ -179,7 +179,7 @@
             bufferContexts[2].drawImage(bufferCanvases[4], 0, 0);
         }
 
-        bufferContext[0].drawImage(bufferCanvases[2], 192, 0, 192, 256);
+        bufferContexts[0].drawImage(bufferCanvases[2], 192, 0, 192, 256);
 
         context.drawImage(bc0, 0, 0, canvas.width, canvas.height);
     }
@@ -357,11 +357,11 @@
         touch();
     }
     function hai() {
-        bx1.fillStyle = bx1.fillStyle === colors[1] ? colors[0] : colors[1];
+        bufferContexts[1].fillStyle = bufferContexts[1].fillStyle === colors[1] ? colors[0] : colors[1];
         flickbeat();
     }
     function ho() {
-        bx1.fillStyle = bx1.fillStyle === colors[1] ? colors[0] : colors[1];
+        bufferContexts[1].fillStyle = bufferContexts[1].fillStyle === colors[1] ? colors[0] : colors[1];
         flickoffbeat();
     }
 
@@ -371,11 +371,11 @@
         touch();
     }
     function mmha() {
-        if (bx1.fillStyle === colors[0]) {
-        bx1.fillStyle = colors[1];
+        if (bufferContexts[1].fillStyle === colors[0]) {
+        bufferContexts[1].fillStyle = colors[1];
         flickoffbeat();
         } else {
-        bx1.fillStyle = colors[0];
+        bufferContexts[1].fillStyle = colors[0];
         }
     }
 
