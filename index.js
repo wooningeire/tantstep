@@ -249,6 +249,9 @@
         setTimeout(function () {
             bounce();
             audio.play();
+            setTimeout(function () {
+                document.querySelector("header").opacity = 0;
+            }, 6000);
         }, T * 2);
 
         audioWatcher(awPairs, 40);
@@ -301,8 +304,6 @@
             c.addEventListener("transitionend", function () {
                 var n = document.querySelector("header");
                 n.innerHTML = "– wooningc :)<br />Tant Day 2017<br /><a href='javascript: location.reload();'>Replay</a>";
-                n.style.animation = "none";
-                n.style.webkitAnimation = "none";
                 n.style.pointerEvents = "auto";
                 n.style.opacity = 1;
                 n.style.background = "none";
