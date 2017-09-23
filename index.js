@@ -78,7 +78,8 @@
     function queryVar(name) {
         var pairs = location.search.substring(1).split("&");
         for (var pair of pairs) {
-            if (pair.split("=")[0] == name) return splitPair[1];
+            var splitPair = pair.split("=")[0];
+            if (splitPair == name) return splitPair[1];
         }
     }
     canvas.width = Math.max(Number(queryVar("size")), 0) || 384;
