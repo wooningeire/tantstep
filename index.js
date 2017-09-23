@@ -139,8 +139,8 @@
             for (var j = 0; j < 192 / 45 / scale + 1; j++) {
                 bufferContexts[3].drawImage(
                     sprite.c,
-                    (-25 + j * 45 + (i % 2 ? i % 2 * 22 : 0) + s.ox) * scale,
-                    (-29 + i * 48 + s.oy) * scale,
+                    (-25 + j * 45 + (i % 2 ? i % 2 * 22 : 0) + sprite.ox) * scale,
+                    (-29 + i * 48 + sprite.oy) * scale,
                     width * scale,
                     height * scale
                 );
@@ -170,7 +170,7 @@
         if (radius > 0) {
             bufferContexts[4].fillStyle = colors[3];
             bufferContexts[4].beginPath();
-            bufferContexts[4].arc(cx, cy, radius, 0, 2 * Math.PI);
+            bufferContexts[4].arc(x, y, radius, 0, 2 * Math.PI);
             bufferContexts[4].fill();
 
             if (showMiddleCircle) bufferContexts[4].drawImage(middleCircle, x - 8, y - 8);
