@@ -181,7 +181,7 @@
 
         bufferContexts[0].drawImage(bufferCanvases[2], 192, 0, 192, 256);
 
-        context.drawImage(bc0, 0, 0, canvas.width, canvas.height);
+        context.drawImage(bufferCanvases[0], 0, 0, canvas.width, canvas.height);
     }
     drawLeft(sprites[7]);
     drawRight(0);
@@ -303,7 +303,7 @@
         ], 40);
 
         audioWatcher([[230, function () {
-            c.addEventListener("transitionend", function () {
+            canvas.addEventListener("transitionend", function () {
                 var n = document.querySelector("header");
                 n.innerHTML = "– wooningc :)<br />Tant Day 2017<br /><a href='javascript: location.reload();'>Replay</a>";
                 n.style.pointerEvents = "auto";
@@ -311,7 +311,7 @@
                 n.style.background = "none";
                 n.style.color = "rgba(255, 255, 255, .4)";
             }, false);
-            c.style.opacity = 0;
+            canvas.style.opacity = 0;
         }]], 500);
 
     }, 2000);
