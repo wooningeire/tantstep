@@ -10,6 +10,7 @@
     var bufferContexts = bufferCanvases.map(canvas => canvas.getContext("2d"));
     
     var spritesheet = document.querySelector("img");
+    var audio = document.querySelector("audio");
 
     var scale = 1;
 
