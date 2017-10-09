@@ -406,7 +406,7 @@ function run() {
 
   function flickbeat() {
     cancelAnimationFrame(iIDs[0]);
-    repeat(i => { drawLeft(spriteArray[i + 14]); }, 6, 20, { customDelays: new Map().set(2, 120) });
+    repeat(i => { drawLeft(spriteArray[i + 14]); }, 6, 20, { customDelays: new Map().set(2, 150) });
     touch();
   }
   function hai() {
@@ -420,7 +420,7 @@ function run() {
 
   function flickoffbeat() {
     cancelAnimationFrame(iIDs[0]);
-    repeat(i => { drawLeft(spriteArray[i + 20]); }, 6, 20, { customDelays: new Map().set(2, 120) });
+    repeat(i => { drawLeft(spriteArray[i + 20]); }, 6, 20, { customDelays: new Map().set(2, 150) });
     touch();
   }
   function mmha() {
