@@ -19,6 +19,8 @@ function run() {
   c.height = c.width / 3 * 2;
 
   var lengthRatio = c.width / 384;
+  
+  var audio = document.querySelector("audio");
 
   audio.volume = Math.max(Number(queryVar("volume")), 0) || 1;
   audio.playbackRate = Math.max(Number(queryVar("speed")), 0) || 1;
