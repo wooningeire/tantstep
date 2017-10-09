@@ -377,7 +377,7 @@ function run() {
         
         var newDelay = customDelays.get(i) || delay;
             
-        if (Date.now() - start >= delay) {
+        if (Date.now() - start >= newDelay / audio.playbackRate) {
           start = Date.now();
           func(i++);
         }
@@ -406,7 +406,7 @@ function run() {
 
   function flickbeat() {
     cancelAnimationFrame(iIDs[0]);
-    repeat(i => { drawLeft(spriteArray[i + 14]); }, 6, 20, { customDelays: new Map().set(2, 150) });
+    repeat(i => { drawLeft(spriteArray[i + 14]); }, 6, 20, { customDelays: new Map().set(2, 130) });
     touch();
   }
   function hai() {
@@ -420,7 +420,7 @@ function run() {
 
   function flickoffbeat() {
     cancelAnimationFrame(iIDs[0]);
-    repeat(i => { drawLeft(spriteArray[i + 20]); }, 6, 20, { customDelays: new Map().set(2, 150) });
+    repeat(i => { drawLeft(spriteArray[i + 20]); }, 6, 20, { customDelays: new Map().set(2, 130) });
     touch();
   }
   function mmha() {
