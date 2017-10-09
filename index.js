@@ -1,19 +1,6 @@
 "use strict";
 
-var img = new Image();
-var audio = new Audio();
-
-document.body.appendChild(img);
-document.body.appendChild(audio);
-
-onload = () => {
-  run();
-};
-
-img.src = "sprites.png";
-
-audio.src = "lockstep.mp3";
-audio.autoload = true;
+onload = run;
 
 function run() {
   var c = document.querySelector(".main");
@@ -373,7 +360,29 @@ function run() {
   }
 
   var iIDs = [];
-  function repeat(func, amount, delay, customDelays, doneFunc = () => {}, index = 0) {
+  function repeat(func, amount, delay, options={}) {
+    var start = 0;
+    var i = 0;
+    
+    var index = options.index || 0;
+    var customDelays = options.customDelays || new Map();
+    
+    return new Promise(function (resolve, reject) {
+      iIDs[index] = requestAnimationFrame(iterate);
+      function iterate() {
+        if (i < amount) iIDs[index] = requestAnimationFrame(iterate);
+        else resolve(i);
+        
+        var newDelay = customDelays.get(i) || delay;
+            
+        if (Date.now() - start >= delay) {
+          start = Date.now();
+          func(i++);
+        }
+      }
+    });
+  }  
+  /*function repeat(func, amount, delay, customDelays, doneFunc = () => {}, index = 0) {
     var i = 0;
     interval();
 
@@ -387,15 +396,15 @@ function run() {
         doneFunc();
       }
     }
-  }
+  }*/
 
   function bounce() {
-    repeat((i) => { drawLeft(spriteArray[i]); }, 7, 40);
+    repeat(i => { drawLeft(spriteArray[i]); }, 7, 40);
   }
 
   function flickbeat() {
-    clearTimeout(iIDs[0]);
-    repeat((i) => { drawLeft(spriteArray[i + 14]); }, 6, 20, new Map().set(2, 150));
+    cancelAnimationFrame(iIDs[0]);
+    repeat(i => { drawLeft(spriteArray[i + 14]); }, 6, 20, { customDelays: new Map().set(2, 120) });
     touch();
   }
   function hai() {
@@ -408,8 +417,8 @@ function run() {
   }
 
   function flickoffbeat() {
-    clearTimeout(iIDs[0]);
-    repeat((i) => { drawLeft(spriteArray[i + 20]); }, 6, 20, new Map().set(2, 150));
+    cancelAnimationFrame(iIDs[0]);
+    repeat(i => { drawLeft(spriteArray[i + 20]); }, 6, 20, { customDelays: new Map().set(2, 120) });
     touch();
   }
   function mmha() {
@@ -422,7 +431,7 @@ function run() {
   }
 
   function touch() {
-    clearTimeout(iIDs[1]);
-    repeat((i) => { drawRight(i < 5 ? 4 * i : 40 - 4 * i, i < 6); }, 11, 25, false, () => {}, 1);
+    cancelAnimationFrame(iIDs[1]);
+    repeat(i => { drawRight(i < 5 ? 4 * i : 40 - 4 * i, i < 6); }, 11, 25, { index: 1 });
   }
 }
