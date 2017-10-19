@@ -48,7 +48,7 @@ function run() {
   var scale = 1;
 
   var overlayImages = [
-    new Image,
+    new Image(),
     crop(192, 394, 192, 256),
     crop(0, 394, 192, 256)
   ];
@@ -213,9 +213,9 @@ function run() {
   drawRight(0);
 
   const BPM = 162;
-  const T1 = 60000 / BPM;
+  const T = 60000 / BPM;
 
-  setTimeout(() => {
+  setTimeout(function () {
 
     bounce();
 
@@ -282,7 +282,7 @@ function run() {
     setTimeout(() => {
       bounce();
       audio.play();
-    }, T1 * 2);
+    }, T * 2);
 
     audioWatcher(awPairs, 40);
 
@@ -334,8 +334,6 @@ function run() {
       c.addEventListener("transitionend", () => {
         var n = document.querySelector(".notice");
         n.innerHTML = "– wooningc :)<br />Tant Day 2017<br /><a href='javascript: location.reload()'>Replay</a>";
-        n.style.animation = "none";
-        n.style.webkitAnimation = "none";
         n.style.pointerEvents = "auto";
         n.style.opacity = 1;
         n.style.background = "none";
@@ -346,19 +344,13 @@ function run() {
 
   }, 2000);
 
-  function audioWatcher(pairs, accuracy) {
-    var i = 0;
-    var iID = setInterval(() => {
-      if (!pairs[i]) {
-        clearInterval(iID);
-        return;
-      }
-      if (audio.currentTime >= (pairs[i][0] * T1 - accuracy / 2) / 1000) {
-        pairs[i][1]();
-        i++;
-      }
-    }, accuracy);
-    return iID;
+  function audioWatcher(pairs, intervalTime) {
+    var j = 0;
+    if (!pairs[i]) return;
+    
+    repeat(() => {
+      if (audio.currentTime >= (pairs[++j][0] * T - intervalTime / 2) / 1000) pairs[j][1]();
+    }, intervalTime);
   }
 
   var iIDs = [];
@@ -383,22 +375,7 @@ function run() {
         }
       }
     });
-  }  
-  /*function repeat(func, amount, delay, customDelays, doneFunc = () => {}, index = 0) {
-    var i = 0;
-    interval();
-
-    function interval() {
-      func(i);
-      i++;
-      var newDelay = customDelays ? customDelays.get(i) || delay : delay;
-      if (i <= amount - 1) {
-        iIDs[index] = setTimeout(interval, newDelay / audio.playbackRate);
-      } else {
-        doneFunc();
-      }
-    }
-  }*/
+  }
 
   function bounce() {
     repeat(i => { drawLeft(spriteArray[i]); }, 7, 40);
