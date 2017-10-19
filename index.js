@@ -345,12 +345,17 @@ function run() {
   }, 2000);
 
   function audioWatcher(pairs, intervalTime) {
-    var j = 0;
-    if (!pairs[i]) return;
-    
-    repeat(() => {
-      if (audio.currentTime >= (pairs[++j][0] * T - intervalTime / 2) / 1000) pairs[j][1]();
-    }, intervalTime);
+    var i = 0;
+    var iID = setInterval(() => {
+      if (!pairs[i]) {
+        clearInterval(iID);
+        return;
+      }
+      if (audio.currentTime >= (pairs[i][0] * T1 - accuracy / 2) / 1000) {
+        pairs[i][1]();
+        i++;
+      }
+    }, accuracy);
   }
 
   var iIDs = [];
