@@ -27,12 +27,6 @@ body {
   font-weight: 700;
   user-select: none;
   pointer-events: none;
-  animation: fade 2s ease;
-  animation-delay: 4s;
-  animation-fill-mode: forwards;
-  -webkit-animation: fade 2s ease;
-  -webkit-animation-delay: 6s;
-  -webkit-animation-fill-mode: forwards;
   transition: opacity 1s ease;
 }
 
