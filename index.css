@@ -20,7 +20,7 @@ body {
   transition: opacity 1s ease;
 }
 
-.notice {
+header {
   text-shadow: 0 0 5px #000;
   background: rgba(0, 0, 0, .7);
   line-height: 3;
@@ -30,17 +30,8 @@ body {
   transition: opacity 1s ease;
 }
 
-.notice a {
+header a {
   color: rgba(100, 160, 220, .4);
-}
-
-@keyframes fade {
-  from { opacity: 1; }
-    to { opacity: 0; }
-}
-@-webkit-keyframes fade {
-  from { opacity: 1; }
-    to { opacity: 0; }
 }
 
 body > *:not(:first-child) {
