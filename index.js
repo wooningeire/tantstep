@@ -26,6 +26,8 @@ function run() {
   audio.playbackRate = Math.max(Number(queryVar("speed")), 0) || 1;
 
   var sprites = document.querySelector("img");
+  
+  var header = document.querySelector("header");
 
   var bcs = [...document.querySelectorAll(".buffer")];
   var bxs = bcs.map(function (c) { return c.getContext("2d"); });
@@ -279,9 +281,10 @@ function run() {
       }
     }
 
-    setTimeout(() => {
+    setTimeout(function () {
       bounce();
       audio.play();
+      header.style.opacity = 0;
     }, T * 2);
 
     audioWatcher(awPairs, 40);
@@ -332,12 +335,11 @@ function run() {
 
     audioWatcher([[230, () => {
       c.addEventListener("transitionend", () => {
-        var n = document.querySelector(".notice");
-        n.innerHTML = "– wooningc :)<br />Tant Day 2017<br /><a href='javascript: location.reload()'>Replay</a>";
-        n.style.pointerEvents = "auto";
-        n.style.opacity = 1;
-        n.style.background = "none";
-        n.style.color = "rgba(255, 255, 255, .4)";
+        header.innerHTML = "– wooningc :)<br />Tant Day 2017<br /><a href='javascript: location.reload()'>Replay</a>";
+        header.style.pointerEvents = "auto";
+        header.style.opacity = 1;
+        header.style.background = "none";
+        header.style.color = "rgba(255, 255, 255, .4)";
       }, false);
       c.style.opacity = 0;
     }]], 500);
