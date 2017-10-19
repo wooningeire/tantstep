@@ -351,11 +351,11 @@ function run() {
         clearInterval(iID);
         return;
       }
-      if (audio.currentTime >= (pairs[i][0] * T1 - accuracy / 2) / 1000) {
+      if (audio.currentTime >= (pairs[i][0] * T - intervalTime / 2) / 1000) {
         pairs[i][1]();
         i++;
       }
-    }, accuracy);
+    }, intervalTime);
   }
 
   var iIDs = [];
