@@ -170,7 +170,7 @@ function run() {
 
     function matchesAny(...spriteIDs) {
       for (var id of spriteIDs) {
-        if (Object.is(s, spriteArray[id])) {
+        if (s === spriteArray[id]) {
           return true;
         };
       }
