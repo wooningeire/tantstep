@@ -335,7 +335,10 @@ function run() {
 
     audioWatcher([[230, () => {
       c.addEventListener("transitionend", () => {
-        header.innerHTML = "– wooningc :)<br />Tant Day 2017<br /><a href='javascript: location.reload()'>Replay</a>";
+        var a = document.createElement("a");
+        a.onclick = location.reload;
+        header.innerHTML = "– wooningc :)<br />Tant Day 2017<br />";
+        header.appendChild(a);
         header.style.pointerEvents = "auto";
         header.style.opacity = 1;
         header.style.background = "none";
