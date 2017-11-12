@@ -336,7 +336,8 @@ function run() {
     audioWatcher([[230, () => {
       c.addEventListener("transitionend", () => {
         var a = document.createElement("a");
-        a.onclick = location.reload;
+        a.textContent = "Replay";
+        a.onclick = () => { location.reload(); };
         header.innerHTML = "– wooningc :)<br />Tant Day 2017<br />";
         header.appendChild(a);
         header.style.pointerEvents = "auto";
